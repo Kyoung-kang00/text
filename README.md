@@ -1,39 +1,41 @@
-# Deploy Ready Starter (Frontend + Backend)
+# Deploy Ready Starter (Vercel Fullstack)
+
+Vite 프론트와 Vercel Serverless API를 하나의 프로젝트로 배포합니다.
 
 ## 1) 설치
-각 폴더에서 의존성을 설치하세요.
 
 ```powershell
 cd frontend
 npm install
-cd ..
-cd backend
-npm install
 ```
 
-## 2) 환경변수 설정
-- `frontend/.env.example` -> `frontend/.env`
-- `backend/.env.example` -> `backend/.env`
-
-## 3) 로컬 실행
-터미널 2개를 열어 각각 실행:
+## 2) 로컬 실행
 
 ```powershell
+# API 서버 (선택)
 cd backend
+npm install
 npm run dev
 ```
 
 ```powershell
+# 프론트
 cd frontend
 npm run dev
 ```
 
-## 4) 배포
-- 프론트: Vercel (Root Directory: `frontend`)
-- 백엔드: Render (Root Directory: `backend`)
+기본값으로 프론트는 `/api`를 호출하고, 로컬 개발에서는 Vite 프록시가
+`http://localhost:5000`으로 전달합니다.
 
-프론트 환경변수:
-- `VITE_API_URL=https://<your-render-url>`
+## 3) Vercel 배포
 
-백엔드 환경변수:
-- `ALLOWED_ORIGIN=https://<your-vercel-url>`
+- Vercel에서 `New Project`
+- 저장소 선택: `Kyoung-kang00/text`
+- Root Directory: `frontend`
+- Deploy
+
+배포 후:
+- 프론트: `https://<your-app>.vercel.app`
+- API: `https://<your-app>.vercel.app/api/health`
+
+기본 구성은 동일 도메인의 `/api`를 사용하므로 `VITE_API_URL` 설정이 필수는 아닙니다.
